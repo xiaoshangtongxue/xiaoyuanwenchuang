@@ -1,0 +1,107 @@
+<view class="container1">
+  <!-- <swiper class="swiper"  indicator-dots="true" autoplay="true" interval="2000" duration="1000" circular="true">
+  <block>
+    <swiper-item wx:for="{{imgUrls}}" wx:key="itemId">
+      <image src="{{item.src}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper> -->
+ <!-- 搜索框 -->
+<view class="searchCount" tyle="margin: 10px 0;" >
+  
+      <view    class="searchCenter">
+        <image class="img_shaixuan" src="../../../images/shaixuan.png" bindtap="showPopup"></image>
+          <icon bindtap="searchDetail" class="text-center" color="rgb(204, 204, 204)" size="15" type="search"></icon>
+          <text  bindtap="searchDetail" class="text-text">请输入搜索的商品名称</text>
+      </view>
+</view>
+<van-popup
+  show="{{ show }}"
+  position="left"
+  custom-style="height: 100%;width:25%"
+  bind:close="onClose"
+>
+<van-sidebar active-key="{{ activeKey }}" bind:change="onChange">
+  <van-sidebar-item style="margin:25px;" title="店铺上新" />
+  <van-sidebar-item style="margin:25px;" title="文具用品" />
+  <van-sidebar-item style="margin:25px;" title="穿戴用品" />
+  <van-sidebar-item style="margin:25px;" title="纪念品" />
+</van-sidebar>
+
+<van-notify id="van-notify" />
+</van-popup>
+<!-- <van-divider hairline /> -->
+<view style="height: 5px;"></view>
+<van-dropdown-menu active-color="#009494" >
+  <van-dropdown-item bind:change="onshaixuan" value="{{ value1 }}" options="{{ option1 }}" />
+  <van-dropdown-item  bind:change="onshaixuan" value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item  bind:change="onshaixuan" value="{{ value3 }}" options="{{ option3 }}" />
+</van-dropdown-menu>
+<view wx:for="{{resultList}}" wx:key="{{resultList}}">
+  <view wx:if="{{item.isremai}}">
+  <van-card
+      tag="热卖中"
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+      thumb-link='/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}'
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">已售{{item.GoodsSale}}件</view>
+  </view>
+
+</van-card>
+</view>
+<view wx:else="">
+  <van-card
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+      thumb-link='/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}'
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">已售{{item.GoodsSale}}件</view>
+  </view>
+
+</van-card>
+</view>
+<van-divider hairline />
+</view>
+<!-- <view   class="cate-content dis-flex" wx:if="{{ screenArray.length > 0 }}"> -->
+  <!-- 左侧 一级分类 -->
+<!-- 
+  <scroll-view class="cate-left f-28" scroll-y="{{ true }}" style="height: {{scrollHeight}}px;">
+      <text bindtap="navbarTap" style="margin-top: 20px;" class="type-nav onelist-hidden {{curNav==index ? 'selected' : ''}}" data-index="{{index}}" wx:for="{{screenArray}}" wx:key="unique">{{item}}</text>
+    </scroll-view> -->
+    <!-- 右侧 二级分类 -->
+    <!-- <scroll-view  sclass="cate-right b-f" scroll-top="{{ scrollTop }}" scroll-y="true" style="height: {{ scrollHeight }}px;">
+      <view   wx:if="{{childrenArray}}">
+        <view class="cate-right-cont">
+          <view class="cate-two-box">
+            <view class="cate-cont-box">
+              <view class="flex-three"  wx:for="{{childrenArray}}" wx:key="cit">
+                      <navigator   class="product_item" url="../jobDetail/jobDetail?id={{item._id}}">
+                        <view wx:if="{{item.imgArr.length > 0}}"> 
+                         <image src="{{item.imgArr[0]}}" class="product_image"></image>
+                        </view>
+                        <view wx:else > 
+                         <image src="../../../images/jzimg.jpg" class="product_image"></image>
+                        </view>
+                        <view class="product_num">
+                          <text class="change" style="font-size:35rpx; top: 16px;position: absolute;">{{item.jobName}}</text>
+                          <view style="margin-top: 32px;">
+                          <text class=" grey-color" style="position: absolute; margin-top: 10px;">薪资 | {{item.jobSalary}}元</text> 
+                          </view>
+                            <text class="grey-color" style="position: absolute;top: 60px;">发布人:{{item.nickname}}</text>                  
+                        </view>
+                      </navigator>
+                  </view>
+              </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view> -->
+</view>

@@ -1,0 +1,30 @@
+<view wx:if="{{noaddresslistshow}}" class="adress-none">
+<view class="none-content">
+<image src="/images/jiahao.png"></image>
+<text class="txt">请添加收货地址</text>
+</view>
+</view>
+
+<view wx:else class="address-list">
+<view class="address-item" wx:for="{{addressList}}">
+<view class="item-top">{{item.name}}  {{item.mobile}}</view>
+<view class="item-content">{{item.city}} {{item.street}} </view>
+<view class="item-bottom">
+<view class="left"  bindtap="clickDefault"  data-index="{{index}}">
+<icon type="{{item.isDefault?'success':'circle'}}" size="15"></icon>
+设为默认地址
+</view>
+<view class="right">
+<text class="txt" bindtap="clickDelete"  data-index="{{index}}">删除         </text >
+<text  class="txt" bindtap="clickEdit"  data-index="{{index}}">        编辑</text >
+
+</view>
+</view>
+</view>
+</view>
+
+<view class="add-address" bindtap="clickAdd" >
+<view class="txt">添加收货地址</view>
+</view>
+
+

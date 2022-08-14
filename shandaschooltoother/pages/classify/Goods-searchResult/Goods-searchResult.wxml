@@ -1,0 +1,95 @@
+<!--pages/search-thing-result/search-thing-result.wxml-->
+<view class="container">
+   <view  class="{{indexSearch? 'topnavFixed' : 'topnavAbsolute'}}" bindtap="searchDetail">
+        <view class="searchCenter">
+          <icon class="text-center" color="rgba(0,0,0,0.4)" size="15" type="search"></icon>
+          <text class="text-text">搜索商品</text>
+        </view>
+   </view>
+<view  wx:if="{{resultListShow}}" class='search-list'>
+    <view wx:for="{{resultList}}" wx:key="{{resultList}}">
+   <!-- 是否是橙子店产品 -->
+   <view wx:if="{{item.dianpu == '橙子文创店'}}">
+    <view bindtap="addClickchengzi" data-id="{{item._id}}">
+    <van-card
+    tag="{{item.dianpu}}"
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">浏览量 {{item.clickNum}}</view>
+  </view>
+</van-card>
+</view>
+  </view>
+    <!-- 是否是丁香店产品 -->
+    <view wx:elif="{{item.dianpu == '丁香文创店'}}">
+    <view bindtap="addClickdingxiang" data-id="{{item._id}}">
+    <van-card
+    tag="{{item.dianpu}}"
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">浏览量 {{item.clickNum}}</view>
+  </view>
+</van-card>
+
+</view>
+  </view>
+   <!-- 是否是令德店产品 -->
+   <view wx:elif="{{item.dianpu == '令德文创店'}}">
+    <view bindtap="addClicklingde" data-id="{{item._id}}">
+    <van-card
+      tag="{{item.dianpu}}"
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">浏览量 {{item.clickNum}}</view>
+  </view>
+</van-card>
+</view>
+  </view>
+    <!-- 是否是本店产品 -->
+    <view wx:else="">
+    <view bindtap="addClick" data-id="{{item._id}}">
+  <navigator url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+    <van-card
+    tag="{{item.dianpu}}"
+      price="{{item.GoodsPrice}}"
+      desc="产品描述:{{item.GoodsRemark}}"
+      title="【山大文创】{{item.GoodsName}}"
+      thumb="{{item.imgArr[0]}}"
+
+      lazy-load="ture">
+  <view slot="footer" style="margin-top: -18px;">
+    <view style="color: rgb(199, 198, 198);">浏览量 {{item.clickNum}}</view>
+  </view>
+</van-card>
+  </navigator>
+</view>
+  </view>
+
+
+<van-divider hairline />
+    </view>
+</view>
+<view wx:if="{{noResultListShow}}" class="xiaoxiangshop-notcont" style="margin-top:40px;">
+    <view class="img">
+      <image mode="aspectFit" src="../../../images/tabBar1/no_content.png"></image>
+    </view>
+    <text class="cont" style="margin-left: 30%;">亲, 没有相关内容</text>
+</view>
+
+
+</view>

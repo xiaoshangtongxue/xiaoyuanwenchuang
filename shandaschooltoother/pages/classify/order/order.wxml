@@ -1,0 +1,227 @@
+
+ <!-- 切换栏 -->
+ <view class="swiper-tab">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
+</view>
+ 
+<swiper current="{{currtab}}" class="swiper-box" duration="300" bindchange="tabChange" style="height:{{deviceH-31}}px">
+
+
+<!-- 所有-->
+<swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" scroll-x="true">
+      <view  class="orderDetails" wx:for="{{all}}" >
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+           <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails" bindtap="allDetail" wx:key="index"  id="{{index}}">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+               <view class="productQuantity">订单号： {{item['orderNo']}}</view>
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view> -->
+            </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+            <view >
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             
+             <!-- <text class="refMon"  bindtap="refMon" id="{{index}}">取消订单</text> -->
+            </view>
+            <!-- <view wx:if="{{item.GoodsStatus=='已收货'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+            </view> -->
+          </view>
+          </view>   
+      </view>   
+    </scroll-view>
+  </swiper-item>
+<!-- 待付款-->
+<swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" scroll-x="true">
+      <view  class="orderDetails" wx:for="{{waitPayment}}" >
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+           <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails" bindtap="waitPaymentDetail" wx:key="index"  id="{{index}}">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+               <view class="productQuantity">订单号： {{item['orderNo']}}</view> 
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view>  -->
+            </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+            <view wx:if="{{item.orderStatus=='待付款'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             <text class="refMon"  bindtap="buyagain" id="{{index}}">继续付款</text>
+             <!-- <text class="refMon"  bindtap="refMon" id="{{index}}">取消订单</text> -->
+            </view>
+            <!-- <view wx:if="{{item.GoodsStatus=='已收货'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+            </view> -->
+          </view>
+          </view>   
+      </view>   
+    </scroll-view>
+  </swiper-item>
+  <!-- 待发货-->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" scroll-x="true">
+      <view  class="orderDetails" wx:for="{{alreadyPayment}}" >
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+           <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails" bindtap="alreadyPaymentDetail" wx:key="index"  id="{{index}}">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+              <view class="productQuantity">订单号： {{item['orderNo']}}</view>
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view> -->
+            </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+            <view wx:if="{{item.orderStatus=='待发货'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             <!-- <text class="refMon"  bindtap="refMon" id="{{index}}">退款</text> -->
+            </view>
+            <!-- <view wx:if="{{item.GoodsStatus=='已收货'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+            </view> -->
+          </view>
+          </view>   
+      </view>   
+    </scroll-view>
+  </swiper-item>
+  <!-- 待收货 -->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view  class="orderDetails" wx:for="{{waitGoods}}">
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+            <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails" bindtap="waitGoodsDetail" wx:key="index"  id="{{index}}">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+              <view class="productQuantity">订单号： {{item['orderNo']}}</view>
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view> -->
+          </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             <text class="refMon"  bindtap="refMonWait" id="{{index}}">确定收货</text>
+          </view>
+
+          </view>
+            
+      </view>   
+    </scroll-view>
+  </swiper-item>
+  
+  <!--待评价-->
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view  class="orderDetails" wx:for="{{waitcomment}}" >
+        <view bindtap="waitcommentDetail" wx:key="index"  id="{{index}}">
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+            <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+              <view class="productQuantity">订单号： {{item['orderNo']}}</view>
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view> -->
+          </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             <text class="refMon"  bindtap="refMoncomment" id="{{index}}">评价</text>
+          </view>
+
+          </view>
+        </view>
+        <!-- <view class="product_1">
+          <view class="product_1_1" bindtap="_modJob">修改发布信息</view>
+          <view class="product_1_2">|</view>
+          <view class="product_1_1" bindtap="bindDeleteJob" id="{{index}}">删除</view>  
+        </view> -->
+      </view>   
+    </scroll-view>
+  </swiper-item>
+
+   <!-- 退款/售后-->
+   <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" scroll-x="true">
+      <view  class="orderDetails" wx:for="{{refund}}" >
+          <view class="orderListTitle">
+            <text class="userName">山大文创</text>
+           <text class="orderStatus">{{item.orderStatus}}</text>
+           </view>
+          <view class="orderListDetails" bindtap="refundDetail" wx:key="index"  id="{{index}}">
+            <view wx:if="{{item.imgArr<=0}}"  class="productImg">
+              <image src="/images/kong.jpg" background-size="cover"></image>
+            </view>
+            <view wx:else class="productImg">
+              <image  src="{{item.imgArr[0]}}" background-size="cover"></image>
+            </view>
+            <view class="productInfo">
+              <view class="productQuantity">名称： {{item['GoodsName']}}</view>
+              <view class="productQuantity">订单号： {{item['orderNo']}}</view>
+             <!-- <view class="productDate">购买时间： {{item['BuyTime']}}</view> -->
+            </view>
+          </view>
+          <view class="productCount">
+            <view class="productCount1">
+            <view wx:if="{{item.orderStatus=='退款/售后'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+             <!-- <text class="refMon"  bindtap="refMon" id="{{index}}">退款</text> -->
+            </view>
+            <!-- <view wx:if="{{item.GoodsStatus=='已收货'}}">
+             <text>价格：￥{{item['GoodsPrice']}}</text>
+            </view> -->
+          </view>
+          </view>   
+      </view>   
+    </scroll-view>
+  </swiper-item>
+</swiper>
+

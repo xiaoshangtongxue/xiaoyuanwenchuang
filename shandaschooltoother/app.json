@@ -1,0 +1,70 @@
+{
+
+  "pages": [
+    "pages/shouye/shouye",
+    "pages/shoppingCart/shoppingCart",
+     "pages/classify/mine/mine",
+     "pages/classify/order/order",
+    "pages/classify/Goods-search/Goods-search",
+    "pages/classify/Goods-searchResult/Goods-searchResult",
+    "pages/classify/GoodsDetail/GoodsDetail",
+    "pages/classify/AllGoods/AllGoods",
+    "pages/classify/CthGoods/CthGoods",
+    "pages/classify/JnGoods/JnGoods",
+    "pages/classify/WjGoods/WjGoods",
+    "pages/classify/NewGoods/NewGoods",
+    "pages/settlement/settlement",
+    "pages/classify/account/account",
+    "pages/classify/address/address",
+    "pages/classify/login/login",
+    "pages/classify/personal/personal",
+    "pages/classify/addressedit/addressedit",
+    "pages/classify/orderDetial/orderDetial"
+
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#009494",
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "山大校庆文创店",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance":300,
+    "navigateToMiniProgramAppIdList":[
+      "wxf7cfe80159baf47b"
+    ]
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/shouye/shouye",
+        "iconPath": "images/tabBar1/home1.png",
+        "selectedIconPath": "images/tabBar1/home-fill1.png"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/shoppingCart/shoppingCart",
+        "iconPath": "images/tabBar1/购物车满.png",
+        "selectedIconPath": "images/tabBar1/购物车满 (1).png"
+      },
+      {
+        "text": "全部商品",
+        "pagePath": "pages/classify/AllGoods/AllGoods",
+        "iconPath": "images/tabBar1/所有商品.png",
+        "selectedIconPath": "images/tabBar1/所有商品 (1).png"
+      },
+    
+      {
+        "text": "我的",
+        "pagePath": "pages/classify/mine/mine",
+        "iconPath": "images/tabBar1/我的-我的.png",
+        "selectedIconPath": "images/tabBar1/我的-我的 (1).png"
+      }
+    ],
+    "color": "#ffffff",
+    "selectedColor": "#515151",
+    "backgroundColor": "#009494"
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

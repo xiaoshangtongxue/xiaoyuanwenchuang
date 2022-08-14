@@ -1,0 +1,570 @@
+<!--pages/shouye/shouye.wxml-->
+<import src="../components/news/news.wxml"></import>
+<!-- 搜索框 -->
+<view class='sousuo' style="background-color: #009494;"  bindtap='bindSearchGoods' >
+ 
+ <view style="font-size: 12px; border-radius: 15px;margin:0 auto; color:rgb(211, 211, 211);text-align: left;line-height: 28px; width: 88%;height: 28px;border: 1px solid rgb(212, 212, 212);background-color: white;padding-left: 26px;">
+  <image style=" position:absolute; height: 15px;width: 15px;margin-left: -18px;margin-top: 7px;" src='../../images/search.png'></image>请输入您感兴趣的内容
+
+ </view>
+
+</view>
+<!-- 首页的轮播图 -->
+<swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" duration="1000" circular="true">
+  <block>
+    <swiper-item wx:for="{{imgUrls}}" wx:key="itemId">
+      <image src="{{item.src}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 通知栏的模板 -->
+
+<view style="margin-top: 1px;height: 30px;">
+  <van-notice-bar  background='#FFFFFF' left-icon="volume-o"  scrollable text="热烈庆祝山西大学120校庆,即日起,官方授权文创店正式运营!" />
+</view>
+<!-- 分类 -->
+<view class='fenlei'>
+
+  <!-- <navigator  style="background-color: #FFFFFF;" url='../classify/NewGoods/NewGoods' class='navi navi-zahuopu'>
+    <view style="background-color: #FFFFFF;" class='leibie fenlei-zahuopu'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/chengzi.png'></image>
+      <view>店铺上新</view>
+    </view>
+  </navigator>
+  <navigator  style="background-color: #FFFFFF;" url='../classify/WjGoods/WjGoods' class='navi navi-jianzhi'>
+    <view style="background-color: #FFFFFF;"  class='leibie fenlei-jianzhi'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/dingxiang.png'></image>
+      <view>文具用品</view>
+    </view>
+  </navigator>
+  <navigator  style="background-color: #FFFFFF;" url='/pages/classify/CthGoods/CthGoods' class='navi navi-jishou'>
+    <view  style="background-color: #FFFFFF;" class='leibie fenlei-jishou'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/lingde.png'></image>
+      <view>穿戴用品</view>
+    </view>
+  </navigator>
+  <navigator  style="background-color: #FFFFFF;" url='/pages/classify/JnGoods/JnGoods' class='navi navi-gongyi'>
+    <view  style="background-color: #FFFFFF;" class='leibie fenlei-gongyi'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/wenying.png'></image>
+      <view>纪念用品</view>
+    </view>
+  </navigator> -->
+ <view  class='navi navi-zahuopu' bindtap="tochengzi">
+  <view style="background-color: #FFFFFF;" class='leibie fenlei-zahuopu'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/chengzi.png'></image>
+      <view>橙子文创店</view>
+    </view>
+ </view>
+<view class='navi navi-jianzhi' bindtap="todingxiang">
+  <view style="background-color: #FFFFFF;"  class='leibie fenlei-jianzhi'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/dingxiang.png'></image>
+      <view>丁香文创店</view>
+    </view>
+</view>
+ 
+<view class='navi navi-jishou' bindtap="tolingde">
+  <view  style="background-color: #FFFFFF;" class='leibie fenlei-jishou'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/lingde.png'></image>
+      <view>令德文创店</view>
+    </view>
+</view>
+
+<view class='navi navi-gongyi'>
+  <navigator url="/pages/classify/JnGoods/JnGoods">
+  <view  style="background-color: #FFFFFF;" class='leibie fenlei-gongyi'>
+      <image  style="background-color: #FFFFFF;" src='../../images/fenlei/wenying.png'></image>
+      <view>文瀛文创店</view>
+    </view>
+  </navigator>
+</view>
+
+</view>
+<!-- 今日推荐 -->
+
+ <!-- 推荐好书 -->
+<!--  <view class='tuijian-img'>
+  <text class='tuijian-cont'>今日推荐</text>
+  <image src='../../images/tuijian.png'></image>
+</view>
+<view class='cont'>
+  <view class='session-page'>
+    <view class='session-header'>
+      <text class='header-title'>推荐好物</text>
+      <text class='header-more' bindtap='bindToMoreGoods'>更多></text>
+    </view>
+  </view>
+  <view class='session-page'>
+    <view class='session-header'>
+      <text class='header-title'>推荐兼职</text>
+      <text class='header-more' bindtap='bindToMoreJob'>更多></text>
+    </view>
+  </view>
+</view> -->
+ <!-- 切换栏 -->
+<!--  
+  <view class="swiper-tab" tyle="margin: 20px 0;">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
+ </view>
+
+ 
+ 
+<swiper current="{{currtab}}" class="swiper-box" duration="300" bindchange="tabChange" style="height:{{deviceH-31}}px">
+
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true" scroll-x="true">
+      <view  wx:if="{{clothingshow}}" class='search-list'>
+    <view wx:for="{{resultList}}" wx:key="{{resultList}}">
+    <view class='movie-wrapper' data-id='{{item._id}}' bindtap='toGoodsDetail'>
+      <view class='movie-content'>
+        <view class='poster' wx:if="{{item.imgArr<=0}}">
+          <image src="/images/kong.jpg" ></image>
+        </view>
+        <view class='poster' wx:else>
+          <image  src='{{item.imgArr[0]}}' ></image>
+        </view>
+        <view class='total'>
+            <text class='name'>物品名称：{{item.GoodsName}}</text>
+            <text class='desc'>校区：{{item.GoodsCampus}}</text>
+            <text class='desc'>成色：{{item.GoodsConditions}}</text>
+            <text class='desc'>库存：{{item.GoodsNum}}</text>
+            <text class='price'>价格：￥{{item.GoodsPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+ </view> 
+ <view wx:if="{{noclothingshow}}" class="xiaoxiangshop-notcont" style="margin-top:10px;">
+    <view class="img">
+      <image mode="aspectFit" src="../../../images/tabBar/no_content.png"></image>
+    </view>
+    <text class="cont" style="margin-left: 30%;">亲, 没有相关内容</text>
+</view>
+    </scroll-view>
+  </swiper-item>
+
+  <swiper-item>
+    <scroll-view class="hot-box" scroll-y="true">
+      <view  wx:if="{{jinianwuShow}}" class='search-list'>
+    <view wx:for="{{jinianwuList}}" wx:key="{{jinianwuList}}">
+    <view class='movie-wrapper' data-id='{{item._id}}' bindtap='toGoodsDetail1'>
+      <view class='movie-content'>
+        <view class='poster'>
+          <image  src='/images/jzimg.jpg' ></image>
+        </view>
+        <view class='total'>
+            <text class='name'>工作名称：{{item.jobName}}</text>
+            <text class='desc'>工作地点:{{item.jobPlace}}</text>
+            <text class='desc'>工资薪酬:{{item.jobSalary}}</text>
+        </view>
+      </view>
+    </view>
+    </view>
+</view> 
+<view wx:if="{{hotsalenoclothingshow}}" class="xiaoxiangshop-notcont" style="margin-top:10px;">
+    <view class="img">
+      <image mode="aspectFit" src="../../../images/tabBar/no_content.png"></image>
+    </view>
+    <text class="cont" style="margin-left: 30%;">亲, 没有相关内容</text>
+</view>
+    </scroll-view>
+  </swiper-item>
+</swiper> -->
+
+
+<van-tabs  animated swipeable active="{{ currtab }}" bind:change="onChange">
+     <!-- 新品热卖-->
+  <van-tab title="新品热卖">
+ 
+    <view   wx:for="{{newlist}}" wx:key="{{newlist}}">
+         <!-- 橙子文创店 -->
+      <view wx:if="{{item.dianpu == '橙子文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickchengzi" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+           <!-- 丁香文创店 -->
+           <view wx:elif="{{item.dianpu == '丁香文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickdingxiang" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+       <!-- 令德文创店 -->
+      <view wx:elif="{{item.dianpu == '令德文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClicklingde" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClicklingde" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+         <!-- 文瀛文创店 -->
+      <view wx:elif="{{item.dianpu == '文瀛文创店'}}">
+      <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view  style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+             <view bindtap="addClick" data-id="{{item._id}}">
+              <navigator  url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+             </navigator>
+             </view>
+         
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  bindtap="addClick" data-id="{{item._id}}" style="margin-top: -18px;margin-left: 117px;">
+                  <navigator url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </navigator>     
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+    </view>
+   </view>
+  </van-tab>
+
+
+  <!-- 文具热卖-->
+  <van-tab title="文具热卖">
+    <view wx:for="{{wenjulist}}" wx:key="{{wenjulist}}">
+       <!-- 橙子文创店 -->
+       <view wx:if="{{item.dianpu == '橙子文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickchengzi" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+           <!-- 丁香文创店 -->
+           <view wx:elif="{{item.dianpu == '丁香文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickdingxiang" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+       <!-- 令德文创店 -->
+      <view wx:elif="{{item.dianpu == '令德文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClicklingde" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClicklingde" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+         <!-- 文瀛文创店 -->
+      <view wx:elif="{{item.dianpu == '文瀛文创店'}}">
+      <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view  style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+             <view bindtap="addClick" data-id="{{item._id}}">
+              <navigator  url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+             </navigator>
+             </view>
+         
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  bindtap="addClick" data-id="{{item._id}}" style="margin-top: -18px;margin-left: 117px;">
+                  <navigator url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </navigator>     
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+    </view>
+</view>
+  </van-tab>
+  <!-- 文创服饰-->
+  <van-tab title="穿戴热卖">
+    <view wx:for="{{resultList}}" wx:key="{{resultList}}">
+      <!-- 橙子文创店 -->
+      <view wx:if="{{item.dianpu == '橙子文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickchengzi" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+           <!-- 丁香文创店 -->
+           <view wx:elif="{{item.dianpu == '丁香文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickdingxiang" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+       <!-- 令德文创店 -->
+      <view wx:elif="{{item.dianpu == '令德文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClicklingde" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClicklingde" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+         <!-- 文瀛文创店 -->
+      <view wx:elif="{{item.dianpu == '文瀛文创店'}}">
+      <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view  style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+             <view bindtap="addClick" data-id="{{item._id}}">
+              <navigator  url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+             </navigator>
+             </view>
+         
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  bindtap="addClick" data-id="{{item._id}}" style="margin-top: -18px;margin-left: 117px;">
+                  <navigator url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </navigator>     
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+    </view>
+</view>
+  </van-tab>
+  <van-tab title="纪念物热卖">
+    <!-- 热卖-->
+    <view wx:for="{{jinianwuList}}" wx:key="{{jinianwuList}}">
+         <!-- 橙子文创店 -->
+         <view wx:if="{{item.dianpu == '橙子文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickchengzi" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+           <!-- 丁香文创店 -->
+           <view wx:elif="{{item.dianpu == '丁香文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClickdingxiang" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClickchengzi" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+       <!-- 令德文创店 -->
+      <view wx:elif="{{item.dianpu == '令德文创店'}}">
+     <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+              <view bindtap="addClicklingde" data-id="{{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+            </view>
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  style="margin-top: -18px;margin-left: 117px;">
+                  <view bindtap="addClicklingde" data-id="{{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </view>
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+      </view>
+         <!-- 文瀛文创店 -->
+      <view wx:elif="{{item.dianpu == '文瀛文创店'}}">
+      <view style="width: 49.4%;float: left; margin: auto;">
+         <view style="border-radius: 10px;">
+            <view  style="box-shadow: 0px 2px 3px rgb(202, 202, 202);margin:4px 4px  3px 6px; border-radius: 6px;">
+             <view bindtap="addClick" data-id="{{item._id}}">
+              <navigator  url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+              <van-image  data-index="{{index}}"  width="100%" height="160" src="{{item.imgArr[0]}}" />
+             </navigator>
+             </view>
+         
+              <view class="titlename">【山大{{item.dianpu}}】{{item.GoodsName}}</view>
+              <view class="yishou" >浏览量 {{item.clickNum}}</view>
+              <view class="goodprice">￥{{item.GoodsPrice}}
+                <view  bindtap="addClick" data-id="{{item._id}}" style="margin-top: -18px;margin-left: 117px;">
+                  <navigator url="/pages/classify/GoodsDetail/GoodsDetail?id={{item._id}}">
+                  <van-icon  size='16' name="cart-o"  color='#009494'/>
+                </navigator>     
+                </view>
+              </view>
+
+            </view>
+         </view>
+      </view>
+    </view>
+</view>
+
+
+  </van-tab>
+
+</van-tabs>
+
+

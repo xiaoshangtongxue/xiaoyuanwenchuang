@@ -1,0 +1,22 @@
+
+<view class="two">
+    <view class="order" bindtap="personal">
+     <text class="myorder-text">我的头像</text>
+     <image class="next-image" src="{{userInfo.avatarUrl}}"></image>
+   </view>
+  </view>
+   <view class="two">
+    <view class="order" bindtap="address">
+     <text class="myorder-text">我的昵称</text>
+     <text class="next-image1">{{userInfo.nickName}}</text>
+   </view>
+  
+   </view>
+   <view class="two">
+    <view class="order" bindtap="address">
+     <text class="myorder-text">手机号</text>
+     <text class="myorder-text1">{{phone}}</text>
+     <button  style="background: #009494; color: white; width: 70%; font-weight: normal;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="next-image2">一键获取</button>
+   </view>
+  
+   </view>

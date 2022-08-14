@@ -1,0 +1,10 @@
+
+<view >
+<view class="member">
+  山大文创
+</view>
+
+<button  bindtap="getUserProfile" class="impowerBtn" style="background: #009494; color: white; width: 70%; font-weight: normal;">授权登录</button>
+
+</view>
+

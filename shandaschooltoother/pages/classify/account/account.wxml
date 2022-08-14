@@ -1,0 +1,16 @@
+<!--pages/account/account.wxml-->
+<view class="two">
+    <view class="order" bindtap="personal">
+     <text class="myorder-text">个人信息</text>
+     <image class="next-image" src="/images/jiantou.png"></image>
+   </view>
+  </view>
+   <view class="two">
+    <view class="order" bindtap="address">
+     <text class="myorder-text">收货地址</text>
+     <image class="next-image" src="/images/jiantou.png"></image>
+   </view>
+  
+   </view>
+   <button  bindtap="logout" class="impowerBtn" style="background: #009494; color: white; width: 32%; font-weight: normal;">退出登录</button>
+

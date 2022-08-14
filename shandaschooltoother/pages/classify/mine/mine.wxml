@@ -1,0 +1,41 @@
+<!--pages/mine/mine.wxml-->
+<!--pages/mine/mine.wxml-->
+<view class="container">
+  <view class="content">
+   <view class="head1">
+        <view  bindtap="goLogin">
+            <image class="head" src="{{userInfo?userInfo.avatarUrl:'/images/head.png'}}"></image>
+        </view>
+        <view class="name"bindtap="goLogin">
+            <text>{{userInfo?userInfo.nickName:'点击登录'}}</text>
+        </view>
+    </view>
+ </view>
+
+
+ <view class="two" wx:if="{{DeviceNumberPer==0||DeviceNumberPer==1}}">
+    <view class="order" bindtap="lookInfo">
+     <text class="myorder-text">订单信息</text>
+     <text class="myorderlook-text">查看全部订单</text> 
+     <image class="next-image" src="/images/jiantou.png"></image>
+   </view>
+   <view class="menu-wrp">
+    <view class="menu-list"  wx:for="{{device}}" bindtap="goToDevice" wx:key="index"  id="{{index}}">
+     <image class="menu-img" src="{{item.src}}" />
+     <view class="menu-desc">{{item.text}}</view>
+    </view>
+   </view>
+ </view>
+ 
+
+ <view class="two">
+    <view class="order" bindtap="account">
+     <text class="myorder-text">账户设置</text>
+     <image class="next-image" src="/images/jiantou.png"></image>
+   </view>
+  
+   </view>
+ </view>
+ 
+
+

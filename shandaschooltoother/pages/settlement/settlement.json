@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-divider": "@vant/weapp/divider/index",
+        "van-icon": "@vant/weapp/icon/index",
+        "van-card": "@vant/weapp/card/index"
+
+
+    },
+    "navigationBarTitleText": "确认订单"
+  }
